@@ -1,0 +1,28 @@
+{
+  "presets": [
+    [
+      "env", {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver", {
+        "root": ["./src"],
+        "alias": {
+          "frontend": "frontend",
+          "backend": "backend",
+          "error": "error"
+        }
+      }
+    ],
+    [
+      "babel-plugin-root-import", {
+      "rootPathPrefix": "~",
+      }
+    ]
+  ]
+}
