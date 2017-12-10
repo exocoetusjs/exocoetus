@@ -1,26 +1,26 @@
 import SocketClient from 'socket.io-client';
-import Socket from '../Socket';
+import AbstractSocketCreator from '../AbstractSocketCreator';
 import ConnectTimeoutError from './ConnectTimeoutError';
 
 /**
  * @class
  */
-class ClientSocket extends Socket {
+class ClientSocketCreator extends AbstractSocketCreator {
   /**
    * @constructor
    */
-  constructor(...args) {
-    super(...arg);
+  constructor(options: { port: string }) {
+    super(options);
   }
 
   /**
    * @method
-   * @return {promise}
+   * @return {Promise}
    */
-  establishSocket() {
+  create(): Promise {
     const { options } = this;
     const { url } = options;
-    const socket = new SocketClient(url, options);
+    const socket = new SocketClient((url: string), options);
 
     return new Promise((resolve, reject) => {
       socket.on('connect', () => {
@@ -37,4 +37,4 @@ class ClientSocket extends Socket {
   }
 }
 
-export default ClientSocket;
+export default ClientSocketCreator;

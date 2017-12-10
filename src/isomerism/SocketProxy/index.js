@@ -1,37 +1,27 @@
-import OptionsParameterError from 'error/OptionsParameterError ';
+import OptionsParameterError from 'common/class/error/OptionsParameterError';
+import AbstractVirtualProxy from 'commmon/class/pattern/AbstractVirtualProxy';
 import SocketBuilder from './SocketBuilder';
 
 /**
  * @class
  */
-class SocketProxy {
+class SocketProxy extends AbstractVirtualProxy<Promise> {
   /**
    * @constructor
    */
-  constructor(options = {}) {
-    const { getInstances } = this.constructor;
-    const instances = getInstances();
-    Object.assign(this, instances);
+  constructor(options: { type: string } = {}) {
+    super();
     this.options = options;
   }
 
   /**
-   * @static
-   * @return {object}
-   */
-  static getInstances() {
-    return {
-      socket: null,
-    };
-  }
-
-  /**
    * @method
-   * @return {promise}
+   * @return {Promise}
    */
-  establishSocket() {
+  establish(): Promise {
     const { options } = this;
-    switch (options.type) {
+    const { type } = options;
+    switch (type) {
       case 'server': {
         return SocketBuilder.buildServerSocket(options);
       }
@@ -47,15 +37,10 @@ class SocketProxy {
 
   /**
    * @method
-   * @return {object}
+   * @return {Promise}
    */
-  getSocket() {
-    const { socket } = this;
-    if (socket === null) {
-      this.socket = this.estabilshSocket();
-    }
-
-    return this.socket;
+  requestSubject(): Promise {
+    return this.establish();
   }
 }
 

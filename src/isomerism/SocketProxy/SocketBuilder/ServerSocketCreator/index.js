@@ -1,23 +1,23 @@
 import SocketServer from 'socket.io';
-import OptionsParameterError from 'error/OptionsParameterError ';
-import Socket from '../Socket';
+import OptionsParameterError from 'common/error/OptionsParameterError ';
+import AbstractSocketCreator from '../AbstractSocketCreator';
 
 /**
  * @class
  */
-class ServerSocket extends Socket {
+class ServerSocketCreator extends AbstractSocketCreator {
   /**
    * @constructor
    */
-  constructor(...args) {
-    super(...arg);
+  constructor(options: { httpServer?: object, port?: number }) {
+    super(options);
   }
 
   /**
    * @method
    * @return {object}
    */
-  establishSocket() {
+  create() {
     const { options } = this;
     const { httpServer, port } = options;
     if (httpServer && port) {
@@ -38,4 +38,4 @@ class ServerSocket extends Socket {
   }
 }
 
-export default ServerSocket;
+export default ServerSocketCreator;
