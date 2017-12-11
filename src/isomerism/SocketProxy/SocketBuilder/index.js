@@ -1,5 +1,6 @@
 import ClientSocketCreator from './ClientSocketCreator';
 import ServerSocketCreator from './ServerSocketCreator';
+import AbstractSocketCreator from './AbstractSocketCreator';
 
 /**
  * @class
@@ -10,9 +11,8 @@ class SocketBuilder {
    * @return {Promise}
    */
   static buildClientSocket(options: object): Promise {
-    const clientSocketCreator = new ClientSocketCreator(options);
-    const socket = clientSocketCreator.create();
-    return socket;
+    const creator: ConvariantOf<AbstractSocketCreator> = new ClientSocketCreator(options);
+    return clientSocketCreator.getPromise();
   }
 
   /**
@@ -20,9 +20,8 @@ class SocketBuilder {
    * @return {Promise}
    */
   static buildServerSocket(options: object): Promise {
-    const serverSocketCreator = new ServerSocketCreator(options);
-    const socket = serverSocketCreator.create();
-    return socket;
+    const creator: ConvariantOf<AbstractSocketCreator> = new ServerSocketCreator(options);
+    return clientSocketCreator.getPromise();
   }
 }
 

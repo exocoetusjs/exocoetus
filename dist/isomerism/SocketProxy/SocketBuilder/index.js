@@ -12,6 +12,10 @@ var _ServerSocketCreator = require('./ServerSocketCreator');
 
 var _ServerSocketCreator2 = _interopRequireDefault(_ServerSocketCreator);
 
+var _AbstractSocketCreator = require('./AbstractSocketCreator');
+
+var _AbstractSocketCreator2 = _interopRequireDefault(_AbstractSocketCreator);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -23,9 +27,8 @@ class SocketBuilder {
    * @return {Promise}
    */
   static buildClientSocket(options) {
-    const clientSocketCreator = new _ClientSocketCreator2.default(options);
-    const socket = clientSocketCreator.create();
-    return socket;
+    const creator = new _ClientSocketCreator2.default(options);
+    return clientSocketCreator.getPromise();
   }
 
   /**
@@ -33,9 +36,8 @@ class SocketBuilder {
    * @return {Promise}
    */
   static buildServerSocket(options) {
-    const serverSocketCreator = new _ServerSocketCreator2.default(options);
-    const socket = serverSocketCreator.create();
-    return socket;
+    const creator = new _ServerSocketCreator2.default(options);
+    return clientSocketCreator.getPromise();
   }
 }
 

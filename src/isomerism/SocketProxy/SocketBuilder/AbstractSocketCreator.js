@@ -1,9 +1,11 @@
 import Creator from 'common/interface/pattern/Creator';
+import Promiseify from 'common/interface/pattern/Promiseify';
+
 
 /**
  * @class
  */
-class AbstractSocketCreator implements Creator {
+class AbstractSocketCreator implements Creator, Promiseify {
   /**
    * @constructor
    */
@@ -15,7 +17,7 @@ class AbstractSocketCreator implements Creator {
    * @method
    * @return {Promise}
    */
-  getSocket(): Promise {
+  getPromise(): Promise {
     const socket = this.create();
     return Promise.resolve(socket);
   }

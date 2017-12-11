@@ -20,17 +20,17 @@ class ClientSocketCreator extends AbstractSocketCreator {
   create(): Promise {
     const { options } = this;
     const { url } = options;
-    const socket = new SocketClient((url: string), options);
+    const socket = new SocketClient(url, options);
 
     return new Promise((resolve, reject) => {
       socket.on('connect', () => {
         resolve(socket);
       });
-      socket.on('connect_error', (error) => {
+      socket.on('connect_error', (error: CovariantOf<Error>) => {
         reject(error);
       });
       socket.on('connect_timeout', () => {
-        const error = new ConnectTimeoutError();
+        const error: CovariantOf<Error> = new ConnectTimeoutError();
         reject(error);
       });
     });

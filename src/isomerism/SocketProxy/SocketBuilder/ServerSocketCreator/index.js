@@ -17,7 +17,7 @@ class ServerSocketCreator extends AbstractSocketCreator {
    * @method
    * @return {object}
    */
-  create() {
+  create(): SocketServer {
     const { options } = this;
     const { httpServer, port } = options;
     if (httpServer && port) {

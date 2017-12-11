@@ -28,7 +28,7 @@ class AbstractVirtualProxy {
    */
   static getInstances() {
     return {
-      remoteSubject: null
+      subject: null
     };
   }
 
@@ -37,7 +37,7 @@ class AbstractVirtualProxy {
    */
   request(...args) {
     const { subject } = this;
-    if (subject === null) {
+    if (subject) {
       this.subject = this.requestSubject(...args);
     }
 

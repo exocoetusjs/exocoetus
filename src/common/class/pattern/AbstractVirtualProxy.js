@@ -3,7 +3,7 @@ import Proxy from 'common/interface/pattern/Proxy';
 /**
  * @class
  */
-class AbstractVirtualProxy implements Proxy {
+class AbstractVirtualProxy<T> implements Proxy {
   /**
    * @constructor
    */
@@ -18,16 +18,16 @@ class AbstractVirtualProxy implements Proxy {
    */
   static getInstances(): object {
     return {
-      remoteSubject: null,
+      subject: null,
     };
   }
 
   /**
    * @method
    */
-  request(...args) {
+  request(...args): T {
     const { subject } = this;
-    if (subject === null) {
+    if ((subject: null)) {
       this.subject = this.requestSubject(...args);
     }
 

@@ -8,6 +8,10 @@ var _Creator = require('../../../common/interface/pattern/Creator');
 
 var _Creator2 = _interopRequireDefault(_Creator);
 
+var _Promiseify = require('../../../common/interface/pattern/Promiseify');
+
+var _Promiseify2 = _interopRequireDefault(_Promiseify);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /**
@@ -25,7 +29,7 @@ class AbstractSocketCreator {
    * @method
    * @return {Promise}
    */
-  getSocket() {
+  getPromise() {
     const socket = this.create();
     return Promise.resolve(socket);
   }
