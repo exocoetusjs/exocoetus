@@ -1,6 +1,6 @@
 import SocketServer from 'socket.io';
-import OptionsParameterError from 'common/error/OptionsParameterError ';
-import AbstractSocketCreator from '../AbstractSocketCreator';
+import AbstractSocketCreator from 'root/class/net/AbstractSocketCreator';
+import OptionsParameterError from 'root/error/OptionsParameterError ';
 
 /**
  * @class

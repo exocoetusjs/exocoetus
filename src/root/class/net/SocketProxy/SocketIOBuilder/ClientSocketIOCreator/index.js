@@ -1,11 +1,11 @@
 import SocketClient from 'socket.io-client';
-import AbstractSocketCreator from '../AbstractSocketCreator';
+import AbstractSocketCreator from 'root/class/net/AbstractSocketCreator';
 import ConnectTimeoutError from './ConnectTimeoutError';
 
 /**
  * @class
  */
-class ClientSocketCreator extends AbstractSocketCreator {
+class ClientSocketIOCreator extends AbstractSocketCreator {
   /**
    * @constructor
    */

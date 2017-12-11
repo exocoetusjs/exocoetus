@@ -1,9 +1,9 @@
-import Proxy from 'common/interface/pattern/Proxy';
+import Proxy from 'root/interface/pattern/Proxy';
 
 /**
  * @class
  */
-class AbstractVirtualProxy<T> implements Proxy {
+class AbstractVirtualProxy implements Proxy {
   /**
    * @constructor
    */
@@ -24,8 +24,9 @@ class AbstractVirtualProxy<T> implements Proxy {
 
   /**
    * @method
+   * @return {mixed}
    */
-  request(...args): T {
+  request(...args): mixed {
     const { subject } = this;
     if ((subject: null)) {
       this.subject = this.requestSubject(...args);
